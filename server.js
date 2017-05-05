@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const objectId = require('mongodb').ObjectId;
 
-
 const port = 8080;
 const app = express();
 
@@ -25,32 +24,6 @@ app.use(function(req, res, next){
 	next();
 });
 
-// var fakePosts = [
-//     {
-//         _id: "59091b69b6620d14b6b550db",
-//         title: "ReactJS App Example",
-//         categories: "Programming",
-//         summary: "Create your own To-Do app with ReactJS",
-//         author: "Felipe Mesquita",
-//         img: "react.jpg",
-//         content: "my content"
-//     },
-//     {
-//         _id: "69091b69b6620d14b6b550db",
-//         title: "Second post",
-//         categories: "Science",
-//         summary: "summary 2",
-//         author: "Joao Vitori",
-//         img: "react.jpg",
-//         content: "content2"
-//     }
-// ];
-
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'index.html'));
-// });
-
 app.listen(port, function(){
 	console.log('Server now listening on port '+port);
 });
@@ -61,18 +34,6 @@ mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, db){
 
     // GET all posts
     app.get('/api/posts', function(req, res){
-
-        // const data = [{
-        //     _id: "59091b69b6620d14b6b550db",
-        //     title: "ReactJS App Example",
-        //     categories: "Programming",
-        //     summary: "Create your own To-Do app with ReactJS",
-        //     author: "Felipe Mesquita",
-        //     img: "react.jpg",
-        //     content: "my content"
-        // }];
-
-        // res.json(fakePosts);
 
         posts.find().sort({_id: -1}).toArray(function(err, results){
 
@@ -89,18 +50,6 @@ mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, db){
 
     //GET post by SLUG
     app.get('/api/posts/:slug', function(req, res){
-
-        // const data = {
-        //     _id: "59091b69b6620d14b6b550db",
-        //     title: "ReactJS App Example",
-        //     categories: "Programming",
-        //     summary: "Create your own To-Do app with ReactJS",
-        //     author: "Felipe Mesquita",
-        //     img: "react.jpg",
-        //     content: "my content"
-        // };
-
-        // res.json(data);
 
         posts.find({slug: req.params.slug}).toArray(function(err, results){
 
@@ -127,7 +76,6 @@ mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, db){
         var img = getImage(req.body.categories);
 
         var data = {
-            // _id: '77091b69b6620d14b6b550db',
             title: req.body.title,
             categories: req.body.categories,
             content: req.body.content,
@@ -136,9 +84,6 @@ mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, db){
             img: img,
             slug: _.kebabCase(req.body.title)
         };
-
-        // fakePosts.push(data);
-        // res.status(200).json(fakePosts);
 
         posts.insert(data, function(err, results){
 
