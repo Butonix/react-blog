@@ -2,7 +2,6 @@ import axios from 'axios';
 import { FETCH_POSTS, FETCH_POST, CREATE_POST, UPDATE_POST, DELETE_POST } from './types';
 
 const LOCALHOST_ROOT_URL = 'http://localhost:8080/api';
-const API_KEY = '?key=mesqfel';
 
 export function fetchPosts(){
     const request = axios.get(`${LOCALHOST_ROOT_URL}/posts`);
