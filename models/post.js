@@ -12,12 +12,12 @@ const postsSchema = new Schema({
     slug: String
 });
 
-//On Save Hook, encrypt password
+//Before save
 postsSchema.pre('save', function(next){
     const post = this;
 
     var img = 'home-bg.jpg';
-    switch(category){
+    switch(post.categories){
         case "Programming":
             img = 'programming.jpg';
             break;
