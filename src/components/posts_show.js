@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { fetchPost, deletePost } from '../actions';
 
 class PostsShow extends Component{
 
     componentDidMount(){
         window.scrollTo(0,0);
-        const { slug } = this.props.match.params;
+        const { slug } = this.props.params;
         this.props.fetchPost(slug);
     }
 
     onDeleteClick(){
-        const { slug } = this.props.match.params;
+        const { slug } = this.props.params;
         this.props.deletePost(slug, () => {
             this.props.history.push('/');
         });
@@ -49,7 +49,7 @@ class PostsShow extends Component{
 
                                 <div className="text-align-center">
                                     
-                                    <Link className="btn btn-primary margin-left-5" to={`/posts/${this.props.match.params.slug}/edit`}>Edit Post</Link>
+                                    <Link className="btn btn-primary margin-left-5" to={`/posts/${this.props.params.slug}/edit`}>Edit Post</Link>
                                     
                                     <button
                                         className="btn btn-danger margin-left-5"
@@ -72,7 +72,7 @@ class PostsShow extends Component{
 }
 
 function mapStateToProps({posts}, ownProps){
-    return { post: posts[ownProps.match.params.slug] };
+    return { post: posts[ownProps.params.slug] };
 }
 
 export default connect(mapStateToProps, {fetchPost, deletePost})(PostsShow);

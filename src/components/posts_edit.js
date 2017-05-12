@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPost } from '../actions';
 import { UPDATE_POST } from '../actions/types';
@@ -11,7 +11,7 @@ class PostsEdit extends Component{
 
     componentDidMount(){
         window.scrollTo(0,0);
-        const { slug } = this.props.match.params;
+        const { slug } = this.props.params;
         this.props.fetchPost(slug);
     }
 
@@ -60,7 +60,7 @@ class PostsEdit extends Component{
 }
 
 function mapStateToProps({posts}, ownProps){
-    return { post: posts[ownProps.match.params.slug] };
+    return { post: posts[ownProps.params.slug] };
 }
 
 export default connect(mapStateToProps, {fetchPost})(PostsEdit);

@@ -12,6 +12,7 @@ export function fetchPosts(){
 }
 
 export function fetchPost(slug){
+    console.log('fetchPost');
     const request = axios.get(`${LOCALHOST_ROOT_URL}/posts/${slug}`);
     return {
         type: FETCH_POST,
