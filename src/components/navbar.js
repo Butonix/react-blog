@@ -18,15 +18,23 @@ const Navbar = (props) => {
                         <span></span>
 
                         <ul id="menu">
+                          
+                          <Link to="/"><li>Home</li></Link>
                           <Link to="/posts/new"><li>Create Post</li></Link>
                           <Link to="/about"><li>About</li></Link>
-                          <Link to="/"><li>Home</li></Link>
+
                         </ul>
                     </div>
                 </div>
 
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav navbar-right">
+                        
+                        <li>
+                            <Link to="/">
+                                Home
+                            </Link>
+                        </li>
                         <li>
                             <Link to="/posts/new">
                                 Create Post
@@ -35,11 +43,6 @@ const Navbar = (props) => {
                         <li>
                             <Link to="/about">
                                 About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/">
-                                Home
                             </Link>
                         </li>
                     </ul>
