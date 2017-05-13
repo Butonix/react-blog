@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { 
-    SIGNIN_USER, 
+    SIGNIN_USER,
     SIGNUP_USER 
 } from '../../actions/types';
 
@@ -31,11 +31,16 @@ class FormAuth extends Component{
 
     onSubmit({ email, password}){
 
+        let redir = '/';
+        if(this.props.redir){
+            redir = this.props.redir;
+        }
+
         if(this.props.action == SIGNIN_USER){
-            this.props.signinUser({email, password});
+            this.props.signinUser({email, password, redir});
         }
         else if(this.props.action == SIGNUP_USER){
-            this.props.signupUser({email, password});
+            this.props.signupUser({email, password, redir});
         }
 
     }

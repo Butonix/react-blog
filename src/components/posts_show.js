@@ -18,6 +18,22 @@ class PostsShow extends Component{
         });
     }
 
+    renderButtons(){
+        if(this.props.authenticated){
+            return(
+                <div className="text-align-center">
+                    <Link className="btn btn-primary margin-left-5" to={`/posts/${this.props.params.slug}/edit`}>Edit Post</Link>
+                    <button
+                        className="btn btn-danger margin-left-5"
+                        onClick={this.onDeleteClick.bind(this)}
+                    >
+                        Delete Post
+                    </button>
+                </div>
+            );
+        }
+    }
+
     render(){
         const { post } = this.props;
 
@@ -46,19 +62,7 @@ class PostsShow extends Component{
                         <div className="row">
                             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                                 <span dangerouslySetInnerHTML={{__html: post.content}} />
-
-                                <div className="text-align-center">
-                                    
-                                    <Link className="btn btn-primary margin-left-5" to={`/posts/${this.props.params.slug}/edit`}>Edit Post</Link>
-                                    
-                                    <button
-                                        className="btn btn-danger margin-left-5"
-                                        onClick={this.onDeleteClick.bind(this)}
-                                    >
-                                        Delete Post
-                                    </button>
-                                </div>
-
+                                {this.renderButtons()}
                             </div>
                         </div>
                     </div>
@@ -71,8 +75,11 @@ class PostsShow extends Component{
     }
 }
 
-function mapStateToProps({posts}, ownProps){
-    return { post: posts[ownProps.params.slug] };
+function mapStateToProps(state, ownProps){
+    return { 
+        post: state.posts[ownProps.params.slug],
+        authenticated: state.auth.authenticated
+    };
 }
 
 export default connect(mapStateToProps, {fetchPost, deletePost})(PostsShow);

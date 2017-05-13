@@ -10,6 +10,20 @@ class Signin extends Component{
         window.scrollTo(0,0);
     }
 
+    renderSignUpLink(){
+
+        if(this.props.location.query.redir){
+            const url = '/signup?redir='+encodeURIComponent(this.props.location.query.redir);
+            return (
+                <Link className="btn btn-success" to={url}>Sign Up</Link>
+            );
+        }
+
+        return (
+            <Link className="btn btn-success" to="/signup">Sign Up</Link>
+        );
+    }
+
     render(){
 
         return (
@@ -36,12 +50,13 @@ class Signin extends Component{
 
                             <FormAuth 
                                 action={SIGNIN_USER}
+                                redir={this.props.location.query.redir}
                             />
 
                             <hr />
                             <div className="text-align-center">
                                 <p>OR</p>
-                                <Link className="btn btn-success" to="/signup">Sign Up</Link>
+                                {this.renderSignUpLink()}
                             </div>
 
                         </div>

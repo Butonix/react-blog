@@ -31,6 +31,7 @@ const token = localStorage.getItem('token');
 if(token){
   store.dispatch({type: AUTH_USER});
 }
+// <Route path="/signin/redir/:path" component={Signin} />
 
 ReactDOM.render(
   <Provider store={store}>

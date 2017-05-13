@@ -60,7 +60,7 @@ export function deletePost(slug, callback){
     };
 }
 
-export function signinUser({email, password}){
+export function signinUser({email, password, redir}){
 
     return function(dispatch){
 
@@ -70,7 +70,7 @@ export function signinUser({email, password}){
             .then(response => {
                 dispatch({ type: AUTH_USER });
                 localStorage.setItem('token', response.data.token);
-                browserHistory.push('/');
+                browserHistory.push(redir);
             })
             //Error
             .catch(() => {
@@ -79,7 +79,7 @@ export function signinUser({email, password}){
     }
 }
 
-export function signupUser({email, password}){
+export function signupUser({email, password, redir}){
 
     return function(dispatch){
 
@@ -89,7 +89,7 @@ export function signupUser({email, password}){
             .then(response => {
                 dispatch({ type: AUTH_USER });
                 localStorage.setItem('token', response.data.token);
-                browserHistory.push('/');
+                browserHistory.push(redir);
             })
             //Error
             .catch(error => {

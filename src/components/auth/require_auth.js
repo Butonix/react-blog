@@ -11,16 +11,17 @@ export default function(ComposedComponent) {
 
         componentWillMount(){
             if(!this.props.authenticated){
-                this.context.router.push('/signin');
+                this.context.router.push({
+                  pathname: '/signin',
+                  query: { redir: this.props.location.pathname }
+                });
             }
         }
 
         componentWillUpdate(nextProps){
-
             if(!nextProps.authenticated){
                 this.context.router.push('/signin');
             }
-
         }
         
         render(){
