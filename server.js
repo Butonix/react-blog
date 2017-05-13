@@ -8,9 +8,7 @@ const router = require('./router');
 const app = express();
 
 //DB setup
-mongoose.connect('mongodb://localhost:27017/react_blog');
-// mongodb://mesqfel:gandjad2@ds127731.mlab.com:27731/react_blog
-// mongodb://localhost:27017/react_blog
+mongoose.connect(process.env.MONGO_URI);
 
 //App setup
 app.use(cors());
