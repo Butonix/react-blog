@@ -22,7 +22,7 @@ class Navbar extends Component{
             }
             else{
                 return(
-                    <Link to="/signout"><li>Sign out</li></Link>
+                    <Link to="#" onClick={this.handleSignOut.bind(this)}><li>Sign out</li></Link>
                 );
             }
 
