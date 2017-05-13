@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import FormAuth from './form_auth';
+import { SIGNUP_USER } from '../../actions/types';
 
 class Signup extends Component{
 
@@ -14,7 +15,6 @@ class Signup extends Component{
         return (
 
             <div>
-
                 <header className="intro-header" style={{backgroundImage: "url('../public/imgs/home-bg.jpg')"}}>
                     <div className="container">
                         <div className="row">
@@ -33,7 +33,9 @@ class Signup extends Component{
                     <div className="row">
                         <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                            <FormAuth />
+                            <FormAuth 
+                                action={SIGNUP_USER}
+                            />
 
                             <hr />
                             <div className="text-align-center">
@@ -44,7 +46,6 @@ class Signup extends Component{
                         </div>
                     </div>
                 </div>
-                
             </div> 
         );
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import FormAuth from './form_auth';
+import { SIGNIN_USER } from '../../actions/types';
 
 class Signin extends Component{
 
@@ -33,7 +34,9 @@ class Signin extends Component{
                     <div className="row">
                         <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                            <FormAuth />
+                            <FormAuth 
+                                action={SIGNIN_USER}
+                            />
 
                             <hr />
                             <div className="text-align-center">

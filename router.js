@@ -25,10 +25,10 @@ module.exports = function(app){
     app.put('/api/posts/:id', Post.update);
 
     //Signin an user
-    app.post('/signin', requireSignin, Auth.signin);
+    app.post('/api/signin', requireSignin, Auth.signin);
 
     //Signup an user
-    app.post('/signup', Auth.signup);
+    app.post('/api/signup', Auth.signup);
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'index.html'));

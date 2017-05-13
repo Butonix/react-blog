@@ -1,5 +1,10 @@
 import _ from 'lodash';
-import { FETCH_POSTS, FETCH_POST, DELETE_POST, UPDATE_POST } from '../actions/types';
+import { 
+    FETCH_POSTS, 
+    FETCH_POST, 
+    DELETE_POST, 
+    UPDATE_POST 
+} from '../actions/types';
 
 export default function(state = {}, action){
 

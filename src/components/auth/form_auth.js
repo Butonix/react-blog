@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import { 
+    SIGNIN_USER, 
+    SIGNUP_USER 
+} from '../../actions/types';
 
 class FormAuth extends Component{
 
@@ -24,10 +29,25 @@ class FormAuth extends Component{
         );
     }
 
-    onSubmit(values){
+    onSubmit({ email, password}){
 
-        console.log('Vamos submeter o form', values);
-        
+        if(this.props.action == SIGNIN_USER){
+            this.props.signinUser({email, password});
+        }
+        else if(this.props.action == SIGNUP_USER){
+            this.props.signupUser({email, password});
+        }
+
+    }
+
+    renderAlert(){
+        if(this.props.errorMessage){
+            return (
+                <div className="alert alert-danger">
+                    <strong>Oops!</strong> {this.props.errorMessage}
+                </div>
+            );
+        }
     }
 
     render(){
@@ -37,7 +57,7 @@ class FormAuth extends Component{
             <div>
 
                 <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-
+                    {this.renderAlert()}
                     <Field 
                         label="Email"
                         name="email"
@@ -76,12 +96,16 @@ function validate(values){
     return errors;
 }
 
+function mapStateToProps(state){
+    return { errorMessage: state.auth.error };
+}
+
 let InitializeFromStateForm = reduxForm({
     validate,
     form: 'FormAuth',
     enableReinitialize : true
 })(FormAuth);
 
-InitializeFromStateForm = connect(null)(InitializeFromStateForm);
+InitializeFromStateForm = connect(mapStateToProps, actions)(InitializeFromStateForm);
 
 export default InitializeFromStateForm;
