@@ -16,13 +16,13 @@ module.exports = function(app){
     app.get('/api/posts/:slug', Post.findBySlug);
 
     //Save the post at the database
-    app.post('/api/posts', Post.save);
+    app.post('/api/posts', requireAuth, Post.save);
 
     //DELETE a post by SLUG
-    app.delete('/api/posts/:slug', Post.removeBySlug);
+    app.delete('/api/posts/:slug', requireAuth, Post.removeBySlug);
 
     //UPDATE a post by ID
-    app.put('/api/posts/:id', Post.update);
+    app.put('/api/posts/:id', requireAuth, Post.update);
 
     //Signin an user
     app.post('/api/signin', requireSignin, Auth.signin);

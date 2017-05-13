@@ -30,7 +30,9 @@ export function fetchPost(slug){
 }
 
 export function createPost(values, callback){
-    const request = axios.post(`${LOCALHOST_ROOT_URL}/posts`, values)
+    const request = axios.post(`${LOCALHOST_ROOT_URL}/posts`, values, {
+        headers: {authorization: localStorage.getItem('token')}
+    })
         .then(() => callback());
 
     return {
@@ -41,7 +43,9 @@ export function createPost(values, callback){
 
 export function updatePost(values, callback){
     const id = values._id;
-    const request = axios.put(`${LOCALHOST_ROOT_URL}/posts/${id}`, values)
+    const request = axios.put(`${LOCALHOST_ROOT_URL}/posts/${id}`, values, {
+        headers: {authorization: localStorage.getItem('token')}
+    })
         .then(() => callback());
 
     return {
@@ -51,7 +55,9 @@ export function updatePost(values, callback){
 }
 
 export function deletePost(slug, callback){
-    const request = axios.delete(`${LOCALHOST_ROOT_URL}/posts/${slug}`)
+    const request = axios.delete(`${LOCALHOST_ROOT_URL}/posts/${slug}`, {
+        headers: {authorization: localStorage.getItem('token')}
+    })
         .then(() => callback());
 
     return {
