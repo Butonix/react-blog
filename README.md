@@ -12,7 +12,7 @@ You can check it live here: https://mesq-react-blog.herokuapp.com
 3 - Install dependencies: $ npm install<br><br>
 4 - Rename the file ".envexample" to ".env"<br><br>
 5 - Place your own configuration values in the new renamed ".env" file<br><br>
-6 - On folder /react-blog generate the bundle.js running: $ ./node_modules/.bin/webpack webpack -p
+6 - On folder /react-blog generate the bundle.js running: $ ./node_modules/.bin/webpack webpack -p<br><br>
 7 - On folder /react-blog run: $ node server.js<br><br>
-7 - Visit http://localhost:8080<br><br>
-8 - If you have any trouble, email me: fe.mesquita88@gmail.com<br>
+8 - Visit http://localhost:8080<br><br>
+9 - If you have any trouble, email me: fe.mesquita88@gmail.com
