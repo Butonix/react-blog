@@ -15,7 +15,7 @@ You can check it live here: https://mesq-react-blog.herokuapp.com
 6 - Rename the file "configexample.js" to "config.js"<br><br>
 7 - Place your secret - any random string is valid<br><br>
 8 - On folder /react-blog generate the bundle.js running: $ ./node_modules/.bin/webpack webpack -p<br><br>
-9 - Start mongodb running: $ mongod
+9 - Start mongodb running: $ mongod<br><br>
 10 - On folder /react-blog run: $ node server.js<br><br>
 11 - Visit http://localhost:8080<br><br>
 12 - If you have any trouble, email me: fe.mesquita88@gmail.com
